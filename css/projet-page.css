@@ -197,24 +197,64 @@
     }
 }
 
+/* --- RESTRUCTURATION HERO MOBILE --- */
 @media (max-width: 768px) {
-    .project-title-area {
-margin-top: 30px;
-}
-    .project-grid {
-        grid-template-columns: 1fr;
-
+    .project-hero {
+        /* On réduit l'espace du haut */
+        padding-top: 140px !important; 
     }
 
-    /* Optionnel : Ajustement du texte du Hero sur mobile */
-    .meta-value {
-        margin-bottom: 14px;
+    .project-title-area {
+        display: flex;
+        flex-direction: column;
+        gap: 0; /* On supprime l'écart de la grille */
+    }
+
+    .name-project {
+        /* On réduit la taille pour éviter que le titre ne prenne 5 lignes */
+        font-size: clamp(2rem, 10vw, 2.8rem);
+        line-height: 1;
+        padding-top: 10px;
+        padding-bottom: 30px; /* Espace contrôlé avant les détails */
     }
 
     .project-details {
         padding-left: 0;
-        /* On enlève la marge de gauche pour l'aligner au texte */
-        gap: 5px;
+        flex-direction: row; /* On aligne Year, Type sur une ligne */
+        flex-wrap: wrap;
+        gap: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1); /* Petite séparation élégante */
+        padding-top: 20px;
+    }
+
+    .meta-value {
+        margin-bottom: 0; /* On enlève le gros margin-bottom de 30px */
+    }
+
+    .description-text {
+        width: 100%;
+        padding-top: 30px; /* On rapproche la description des détails */
+        padding-bottom: 40px;
+        font-size: 1.1rem;
+    }
+    .project-grid {
+        grid-auto-rows: auto; /* L'image définit sa propre hauteur */
+        gap: 15px; /* Un peu plus d'espace entre les photos */
+        padding: 0 var(--side-pad);
+    }
+    
+    .project-item {
+        height: auto;
+        min-height: 250px;
+    }
+    .index-links {
+        width: 100%;
+        justify-content: space-between; /* Distribue INDEX / GRAPHISME / ARTISANAT sur la largeur */
+        gap: 10px;
+    }
+    
+    .next-project-link {
+        padding: 60px 0; /* On réduit la hauteur du bloc "Suivant" */
     }
 }
 
