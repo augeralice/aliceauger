@@ -1,0 +1,370 @@
+/* --- VARIABLES --- */
+:root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --ocre: #C5A059;
+    --line: rgba(255, 255, 255, 0.15);
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Albert Sans', sans-serif;
+    --side-pad: 5vw;
+    /* Utilisation de vw pour une marge fluide */
+}
+
+/* --- BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+}
+
+/* --- HEADER --- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 25px var(--side-pad);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    z-index: 1000;
+    background: var(--black);
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 11px;
+    margin-left: 25px;
+    letter-spacing: 1px;
+}
+
+/* --- MENU BURGER LOGIC --- */
+
+/* On cache la checkbox et le bouton par défaut (Desktop) */
+#burger-check, .hamburger {
+    display: none;
+}
+
+
+
+/* --- HERO --- */
+.hero {
+    padding: 160px var(--side-pad) 60px;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 7vw, 6.5rem);
+    /* S'adapte de mobile à desktop */
+    line-height: 0.95;
+    font-weight: 400;
+    margin-bottom: 60px;
+}
+
+.ocre {
+    color: var(--ocre);
+    font-style: italic;
+}
+
+.hero-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.hero-col-right p {
+    max-width: 450px;
+    font-size: clamp(15px, 1.2vw, 18px);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.next-label {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.txt-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.4);
+    white-space: nowrap;
+}
+
+.divider-line {
+    flex-grow: 1;
+    height: 1px;
+    background: var(--line);
+}
+
+/* --- GALLERY & ZOOM EFFECT --- */
+.gallery {
+    padding: 40px var(--side-pad) 100px;
+}
+
+.filter-nav {
+    margin-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    color: var(--white);
+    border-bottom: 1px solid var(--white);
+    padding-bottom: 5px;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+
+.grid-item {
+    position: relative;
+    overflow: hidden;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    height: 450px;
+}
+
+.item-main {
+    grid-row: span 2;
+    height: 900px;
+}
+
+/* L'image et l'effet de zoom */
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.grid-item:hover img {
+    transform: scale(1.08);
+}
+
+.item-overlay {
+    position: absolute;
+    bottom: 40px;
+    left: 30px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.category {
+    font-size: 10px;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.project-name {
+    font-family: var(--font-serif);
+    font-size: clamp(24px, 3vw, 40px);
+}
+
+/* --- FOOTER --- */
+footer {
+    border-top: 1px solid var(--line);
+    padding: 60px var(--side-pad);
+}
+
+.footer-wrap {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+}
+
+.f-logo {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.f-sub {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.5;
+}
+
+.f-title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.footer-wrap a,
+.footer-wrap p {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.f-right {
+    text-align: right;
+}
+
+/* --- RESPONSIVE MOBILE & TABLET --- */
+
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 4.5rem;
+    }
+
+    .grid-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Tablette : 2 colonnes égales */
+    .item-main {
+        grid-row: auto;
+        height: 500px;
+    }
+
+    .grid-item {
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --side-pad: 20px;
+    }
+
+    header {
+        padding: 20px var(--side-pad);
+    }
+
+
+    /* On cache le menu simple sur mobile pour mettre un burger */
+
+
+.hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+
+        height: 18px;
+        cursor: pointer;
+        z-index: 1100; /* Au-dessus de l'overlay */
+        position: relative;
+    }
+
+    .bar {
+        width: 100%;
+        height: 1px; /* Trait fin pour rester dans ton style */
+        background-color: var(--white);
+        transition: all 0.4s ease;
+    }
+
+    header nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--black);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        
+        /* État caché par défaut */
+        clip-path: circle(0% at 90% 5%); /* Animation de cercle qui s'ouvre */
+        transition: clip-path 0.6s ease-in-out;
+        z-index: 1050;
+    }
+
+    header nav a {
+        font-size: 24px; /* Plus grand sur mobile */
+        margin-left: 0;
+        font-family: var(--font-serif);
+        letter-spacing: 4px;
+    }
+
+    /* 3. Logique d'ouverture (Quand on clique) */
+    #burger-check:checked ~ nav {
+        clip-path: circle(150% at 90% 5%);
+    }
+
+    /* Animation du burger en X */
+    #burger-check:checked ~ .hamburger .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    #burger-check:checked ~ .hamburger .bar:nth-child(2) {
+        opacity: 0;
+    }
+    #burger-check:checked ~ .hamburger .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Empêcher le scroll quand le menu est ouvert (optionnel avec JS) */
+    body:has(#burger-check:checked) {
+        overflow: hidden;
+    }
+
+    .hero {
+        padding-top: 120px;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-details {
+        grid-template-columns: 1fr;
+    }
+
+    /* Colonne unique */
+
+    .grid-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* Mobile : 1 seule colonne d'images */
+    .item-main,
+    .grid-item {
+        height: 400px;
+    }
+
+    .footer-wrap {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .f-right {
+        text-align: left;
+    }
+}

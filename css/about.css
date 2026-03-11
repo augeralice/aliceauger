@@ -1,0 +1,111 @@
+/* --- HERO ABOUT --- */
+
+.about-hero {
+    /* On laisse de la place pour le header (70px) + le bouton retour (40px) */
+    display: flex;
+    flex-direction: column;
+        padding: 160px var(--side-pad) 90px;
+}
+
+.about-title-area {
+    width: 100%;
+    /* On s'assure que le titre ne monte pas trop haut */
+    margin-top: 20px; 
+
+}
+
+/* On s'assure que le titre principal a une marge propre */
+.about-main-title {
+    margin-top: 30px;
+    margin-bottom: 80px;
+    line-height: 0.9;
+    
+}
+.name-project {
+   text-transform: none;
+   padding-bottom: 140px;
+}
+
+
+/* --- GRILLE ABOUT --- */
+.about-content-section {
+    padding: 0px var(--side-pad);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 80px;
+    align-items: start;
+}
+
+/* --- TEXTE --- */
+.details-title {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+     color: white;
+}
+
+.inner-text-content {
+    border-left: 0.5px solid  #FCF4C7;
+    padding-left: 30px;
+}
+
+.inner-text-content p {
+    font-family: var(--font-sans);
+     color: white;
+    font-style: normal;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.46;
+    font-weight: 340;
+
+}
+
+/* --- IMAGE --- */
+.about-image-block {
+    position: relative;
+}
+
+.image-wrapper {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-image-block img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(20%);
+    transition: filter 0.5s ease;
+}
+
+.about-image-block:hover img {
+    filter: grayscale(0%);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 1fr; /* On empile sur tablette/mobile */
+        gap: 60px;
+    }
+
+    .inner-text-content {
+        padding-left: 20px;
+    }
+
+    .about-image-block {
+        width: 80%; /* Un peu moins large sur mobile pour le style */
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-main-title {
+        font-size: 3rem !important;
+    }
+}
