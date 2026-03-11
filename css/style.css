@@ -58,7 +58,9 @@
 /************************************************************************************
 ---------------------------------------------STRUCTURE --------------- 
 ************************************************************************************/
-
+html {
+    scroll-behavior: smooth;
+}
 .progress-bar {
     position: fixed;
     top: 69px;
@@ -608,7 +610,7 @@ footer {
 
 @media (max-width: 768px) {
     :root {
-        --side-pad: 40px;
+        --side-pad: 20px;
     }
 
     header {
@@ -684,7 +686,7 @@ footer {
     }
 
     .hero {
-        padding-top: 120px;
+        padding: 120px var(--side-pad) 40px;
     }
 
     .hero-title {
@@ -706,6 +708,9 @@ footer {
 
     .footer-wrap {
         grid-template-columns: 1.5fr 1fr;
+    }
+    footer {
+        padding: 40px var(--side-pad);
     }
 }
 
