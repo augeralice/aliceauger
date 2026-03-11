@@ -197,64 +197,48 @@
     }
 }
 
-/* --- RESTRUCTURATION HERO MOBILE --- */
 @media (max-width: 768px) {
     .project-hero {
-        /* On réduit l'espace du haut */
-        padding-top: 140px !important; 
+        padding: 100px var(--side-pad) 40px !important;
     }
-
     .project-title-area {
-        display: flex;
-        flex-direction: column;
-        gap: 0; /* On supprime l'écart de la grille */
+margin-top: 30px;
+flex-direction: column;
+        gap: 15px; /* Espace réduit entre le titre et les meta-datas */
+
+}
+    .project-grid {
+        grid-template-columns: 1fr;
+
+    }
+    .name-project {
+        font-size: clamp(2.2rem, 10vw, 3rem) !important;
+        line-height: 1;
+        padding-bottom: 20px !important; /* On réduit radicalement ton padding de 140px */
+        margin-bottom: 0;
     }
 
-    .name-project {
-        /* On réduit la taille pour éviter que le titre ne prenne 5 lignes */
-        font-size: clamp(2rem, 10vw, 2.8rem);
-        line-height: 1;
-        padding-top: 10px;
-        padding-bottom: 30px; /* Espace contrôlé avant les détails */
+    /* Optionnel : Ajustement du texte du Hero sur mobile */
+    .meta-value {
+        margin-bottom: 14px;
     }
 
     .project-details {
         padding-left: 0;
-        flex-direction: row; /* On aligne Year, Type sur une ligne */
-        flex-wrap: wrap;
-        gap: 20px;
-        border-top: 1px solid rgba(255,255,255,0.1); /* Petite séparation élégante */
-        padding-top: 20px;
+        /* On enlève la marge de gauche pour l'aligner au texte */
+        gap: 5px;
+        margin-bottom: 30px;
+        padding-top: 15px;
     }
-
-    .meta-value {
-        margin-bottom: 0; /* On enlève le gros margin-bottom de 30px */
-    }
-
     .description-text {
+        margin-top: 0;
         width: 100%;
-        padding-top: 30px; /* On rapproche la description des détails */
-        padding-bottom: 40px;
+    }
+
+    .description-text p {
         font-size: 1.1rem;
-    }
-    .project-grid {
-        grid-auto-rows: auto; /* L'image définit sa propre hauteur */
-        gap: 15px; /* Un peu plus d'espace entre les photos */
-        padding: 0 var(--side-pad);
-    }
-    
-    .project-item {
-        height: auto;
-        min-height: 250px;
-    }
-    .index-links {
-        width: 100%;
-        justify-content: space-between; /* Distribue INDEX / GRAPHISME / ARTISANAT sur la largeur */
-        gap: 10px;
-    }
-    
-    .next-project-link {
-        padding: 60px 0; /* On réduit la hauteur du bloc "Suivant" */
+        line-height: 1.5;
+        max-width: 100%;
     }
 }
 
