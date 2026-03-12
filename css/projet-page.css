@@ -24,8 +24,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-
-
 }
 
 /* État initial : décalé et invisible */
@@ -48,7 +46,6 @@
     font-family: var(--font-sans);
     font-style: normal;
     letter-spacing: 2px;
-
 }
 
 .meta-label {
@@ -89,6 +86,7 @@
     font-size: var(--fs-h2);
     letter-spacing: 1px;
     line-height: 1.5;
+
 }
 
 .description-text p {
@@ -171,40 +169,55 @@
     .description-text p {
         width: 75%;
     }
+}
 
-    .project-title-area {
-        padding-bottom: 80px;
+@media (max-width: 1025px) {
+    .project-details {
+        margin-top: 50px;
     }
-    
+
+    .description-text p {
+        margin-top: 60px;
+        margin-bottom: 30px;
+    }
 }
 
 @media (max-width: 768px) {
-.project-grid {
-        grid-template-columns: 1fr; /* Une seule colonne */
-        grid-auto-rows: auto;       /* IMPORTANT : On annule le 60vh pour que l'image dicte la hauteur */
-        gap: 20px;                  /* On augmente un peu l'espace pour le souffle */
+
+    .project-grid {
+        grid-template-columns: 1fr;
+        /* Une seule colonne */
+        grid-auto-rows: auto;
+        /* IMPORTANT : On annule le 60vh pour que l'image dicte la hauteur */
+        gap: 20px;
+        /* On augmente un peu l'espace pour le souffle */
     }
 
-    .project-item.wide, 
-    .project-item.tall, 
+    .project-item.wide,
+    .project-item.tall,
     .project-item.big {
-        grid-column: span 1;        /* On force tout le monde à prendre 1 seule colonne */
-        grid-row: span 1;           /* On force tout le monde à prendre 1 seule ligne */
-        height: auto;              /* Ou 'auto' si tu veux que l'image garde son ratio naturel */
+        grid-column: span 1;
+        /* On force tout le monde à prendre 1 seule colonne */
+        grid-row: span 1;
+        /* On force tout le monde à prendre 1 seule ligne */
+        height: auto;
+        /* Ou 'auto' si tu veux que l'image garde son ratio naturel */
     }
-    
+
     .project-item img {
         height: 100%;
         width: 100%;
         object-fit: cover;
     }
 
-.project-title-area {
-        display: block; /* Plus simple que flex ou grid pour du mobile vertical */
+    .project-title-area {
+        display: block;
+        /* Plus simple que flex ou grid pour du mobile vertical */
     }
 
     .description-text {
-        width: 100%;    /* Évite que le texte soit trop étroit sur petit écran */
+        width: 100%;
+        /* Évite que le texte soit trop étroit sur petit écran */
         padding-top: 30px;
         margin-bottom: 40px;
     }
