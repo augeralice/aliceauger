@@ -1,18 +1,3 @@
-.progress-bar {
-    position: fixed;
-    top: 69px;
-    /* Un pixel de moins que ton header (70px) pour être pile sur la bordure */
-    left: 0;
-    width: 0%;
-    /* Le JS va changer ça */
-    height: 5px;
-    /* On l'épaissit un peu pour tester */
-    background-color: var(--text-color) !important;
-    /* Ta couleur beige */
-    z-index: 9999;
-    /* Au-dessus de ABSOLUMENT tout */
-}
-
 /* ==========================================================================
    1. SECTION HERO
    ========================================================================== */
@@ -20,6 +5,7 @@
 
 .project-hero {
     font-family: var(--font-sans);
+    padding: 180px var(--side-pad) 50px;
 }
 
 .project-title-area {
@@ -31,13 +17,15 @@
 
 .project-title {
     width: 100%;
+
 }
 
 .project-details {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-left: 50px;
+
+
 }
 
 /* État initial : décalé et invisible */
@@ -58,7 +46,6 @@
 
 .project-details span {
     font-family: var(--font-sans);
-
     font-style: normal;
     letter-spacing: 2px;
 
@@ -75,13 +62,14 @@
 .meta-value {
     font-weight: 400;
     margin-bottom: 30px;
-    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+
 
 }
 
 .name-project {
     font-family: var(--font-sans);
-    font-size: var(--fs-h1);
+    font-size: var(--proj-h1);
     /* S'adapte de mobile à desktop */
     line-height: 0.8;
     letter-spacing: 0.03em;
@@ -93,20 +81,18 @@
 }
 
 .description-text {
-    width: 70%;
+    width: 80%;
     font-family: var(--font-serif);
     padding-top: 60px;
-    padding-bottom: 50px;
+    margin-bottom: 80px;
     font-style: italic;
     font-size: var(--fs-h2);
     letter-spacing: 1px;
-
     line-height: 1.5;
-
 }
 
 .description-text p {
-    width: 98%;
+    width: 100%;
     white-space: pre-line;
     font-weight: 300;
 }
@@ -126,6 +112,8 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+
 
 /* Conteneur principal */
 .project-grid {
@@ -178,75 +166,70 @@
 /* ==========================================================================
    4. RESPONSIVE (MOBILE)
    ========================================================================== */
+@media (min-width: 1025px) {
 
+    .description-text p {
+        width: 75%;
 
-/* Mobile : Tout sur 1 colonne */
-@media (max-width: 1024px) {
-
-    .project-grid {
-        grid-template-columns:  1fr;
-        grid-auto-rows: auto;
-        /* Laisse l'image dicter la hauteur */
     }
 
 
+    .project-title-area {
+        padding-bottom: 80px;
+
+    }
 }
 
-@media (max-width: 768px) {
-    .project-hero {
-        /* On réduit l'espace du haut */
-        padding-top: 140px !important; 
-    }
-.project-title-area {
-        display: flex;
-        flex-direction: column;
-        gap: 0; /* On supprime l'écart de la grille */
-    }
-.project-grid {
 
-        padding: 0 var(--side-pad);
+
+@media (max-width: 768px) {
+.project-grid {
+        grid-template-columns: 1fr; /* Une seule colonne */
+        grid-auto-rows: auto;       /* IMPORTANT : On annule le 60vh pour que l'image dicte la hauteur */
+        gap: 20px;                  /* On augmente un peu l'espace pour le souffle */
+    }
+
+    .project-item.wide, 
+    .project-item.tall, 
+    .project-item.big {
+        grid-column: span 1;        /* On force tout le monde à prendre 1 seule colonne */
+        grid-row: span 1;           /* On force tout le monde à prendre 1 seule ligne */
+        height: auto;              /* Ou 'auto' si tu veux que l'image garde son ratio naturel */
     }
     
-    .project-item {
-        height: auto;
-        min-height: 250px;
+    .project-item img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
     }
+
+.project-title-area {
+        display: block; /* Plus simple que flex ou grid pour du mobile vertical */
+    }
+
+    .description-text {
+        width: 100%;    /* Évite que le texte soit trop étroit sur petit écran */
+        padding-top: 30px;
+        margin-bottom: 40px;
+    }
+
+
+    .project-details {
+        gap: 8px;
+    }
+
+
+
 
     /* Optionnel : Ajustement du texte du Hero sur mobile */
     .meta-value {
         margin-bottom: 14px;
     }
-.name-project {
-        /* On réduit la taille pour éviter que le titre ne prenne 5 lignes */
-        font-size: clamp(2rem, 10vw, 2.8rem);
-        line-height: 1;
-        padding-top: 10px;
-        padding-bottom: 30px; /* Espace contrôlé avant les détails */
-    }
-    .project-details {
-        padding-left: 0;
-        /* On enlève la marge de gauche pour l'aligner au texte */
-        gap: 5px;
-        padding-top: 15px;
-    }
+
+
+
 }
 
-@media (max-width: 500px) {
-    .project-title-area {
-        grid-template-columns: 1fr;
-        /* Le titre et les détails s'empilent */
-        gap: 30px;
-    }
-
-    .project-details {
-        padding-left: 0;
-        /* On enlève la marge de gauche pour l'aligner au texte */
-    }
-
-    .description-text {
-        width: 100%;
-    }
-}
 
 .project-footer {
     display: grid;
@@ -290,7 +273,7 @@
 /* --- ANIMATION DE RÉVÉLATION AU SCROLL --- */
 .project-footer-nav {
     opacity: 0;
-      transform: translateY(40px);
+    transform: translateY(40px);
     transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
     padding: 10px var(--side-pad);
     border-top: 1px solid rgb(255, 255, 255);
@@ -306,7 +289,8 @@
 
 .category-index {
     display: flex;
-    justify-content: space-between; /* Pousse Explorer à gauche et les liens à droite */
+    justify-content: space-between;
+    /* Pousse Explorer à gauche et les liens à droite */
     align-items: center;
     padding: 30px 0;
     width: 100%;
@@ -314,7 +298,8 @@
 
 .index-links {
     display: flex;
-    gap: 60px; /* Espace entre INDEX, GRAPHISME, etc. */
+    gap: 60px;
+    /* Espace entre INDEX, GRAPHISME, etc. */
 }
 
 .explore-label {
@@ -327,12 +312,12 @@
 
 
 .index-links a {
-  background: none;
+    background: none;
     border: none;
     color: var(--white);
     font-family: var(--font-sans);
     font-size: 11px;
-font-weight: 400;
+    font-weight: 400;
     transition: 0.3s;
     cursor: pointer;
     text-transform: uppercase;
@@ -341,7 +326,7 @@ font-weight: 400;
 
 .index-links a:hover {
     color: var(--text-color);
-font-weight: 500;
+    font-weight: 500;
 }
 
 .next-project-link {
@@ -350,10 +335,12 @@ font-weight: 500;
     text-align: center;
     padding: 90px 0;
     cursor: pointer;
-    overflow: hidden; /* Pour contenir l'image au survol */
-   margin-bottom: 60px;
-   margin-top: 40px;
+    overflow: hidden;
+    /* Pour contenir l'image au survol */
+    margin-bottom: 60px;
+    margin-top: 40px;
 }
+
 .next-content-wrapper {
     position: relative;
     z-index: 10;
@@ -384,13 +371,16 @@ font-weight: 500;
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 800px; /* Taille fixe ou 25vw */
+    width: 800px;
+    /* Taille fixe ou 25vw */
     height: 800px;
     transform: translate(-50%, -50%) scale(0.8);
     opacity: 0;
-    pointer-events: none; /* L'image ne doit pas bloquer le clic */
+    pointer-events: none;
+    /* L'image ne doit pas bloquer le clic */
     transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: -1; /* Derrière le texte */
+    z-index: -1;
+    /* Derrière le texte */
 }
 
 .next-image-container img {
@@ -419,49 +409,66 @@ font-weight: 500;
 }
 
 /* --- LOGIQUE MOBILE & TABLETTE --- */
+
+@media(min-width:1025px) {}
+
 @media (max-width: 1024px) {
 
 
     /* On affiche l'image par défaut car il n'y a pas de hover */
     .next-image-container {
-        display: block; /* On s'assure qu'elle n'est pas cachée */
-        opacity: 0.5;   /* Opacité réduite pour ne pas gêner la lecture */
-        width: 100%;    /* Elle prend toute la largeur du bloc */
-        height: 100%;   /* Et toute la hauteur */
-        transform: translate(-50%, -50%) scale(1); /* Centrée */
+        display: block;
+        /* On s'assure qu'elle n'est pas cachée */
+        opacity: 0.5;
+        /* Opacité réduite pour ne pas gêner la lecture */
+        width: 100%;
+        /* Elle prend toute la largeur du bloc */
+        height: 100%;
+        /* Et toute la hauteur */
+        transform: translate(-50%, -50%) scale(1);
+        /* Centrée */
         z-index: -1;
     }
 
     .next-image-container img {
-        filter: brightness(80%) grayscale(20%); /* On assombrit l'image pour le contraste */
+        filter: brightness(80%) grayscale(20%);
+        /* On assombrit l'image pour le contraste */
     }
 
     .next-title {
-        font-size: clamp(1.8rem, 8vw, 2.5rem); /* Taille adaptée au mobile */
-        color: var(--white); /* Le texte reste bien blanc par dessus */
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        /* Taille adaptée au mobile */
+        color: var(--white);
+        /* Le texte reste bien blanc par dessus */
     }
-    
+
     .meta-next {
         opacity: 0.8;
     }
 
 }
+
 @media (max-width: 768px) {
     .back-btn {
-        top: 100px; /* On le descend un peu plus pour laisser respirer le logo */
+        top: 100px;
+        /* On le descend un peu plus pour laisser respirer le logo */
         left: var(--side-pad);
     }
-.explore-label {
-        display: none; /* On cache Explorer comme convenu */
+
+    .explore-label {
+        display: none;
+        /* On cache Explorer comme convenu */
     }
 
     .category-index {
-        justify-content: flex-end; /* On maintient l'alignement à droite */
+        justify-content: flex-end;
+        /* On maintient l'alignement à droite */
         padding: 20px 0;
     }
 
     .index-links {
-        gap: 20px; /* On réduit un peu l'écart pour le mobile */
+        gap: 20px;
+        /* On réduit un peu l'écart pour le mobile */
     }
 
     .index-links a {
