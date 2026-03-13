@@ -5,14 +5,14 @@
 const PROJECTS_DATA = [
     {
         id: "volatiles-paris",
-        title: "Volatiles",
+        title: "L'emprinte \nd'un \nsavoir-faire",
         category: "artisanat",
-        displayCategory: "evenement gravure",
-        year: "2025-2026",
+        displayCategory: "animation sur mesure",
+        year: "2025",
         type: "Artisanat",
         discipline: "Gravure sur verre",
         description: "Une première expérience dans l’univers du vin. \nPour les fêtes, j’ai réalisé ma première animation en gravure artisanale personnalisée sur mesure. Le cadre et la demande m’ont amenés à adapter mon savoir-faire et à développer la gravure et ses possibilités de manière différente : de la communication visuelle au geste en direct. ",
-        imageHero: "image/volatiles1.webp",
+        imageHero: "image/jiro-1.webp",
         imageNext: "image/lucie-logo2.webp",
         url: "projet-page.html?id=volatiles-paris",
         gallery: [
