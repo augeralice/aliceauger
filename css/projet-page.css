@@ -58,21 +58,21 @@
 }
 
 .meta-value {
-    font-weight: 350;
-    margin-bottom: 40px;
-    font-size: clamp(0.7rem, 2vw, 1rem);
+    font-weight: 280;
+    margin-bottom: 35px;
+    font-size: clamp(0.65rem, 2vw, 0.99rem);
     text-transform: uppercase;
 
 }
 
 .name-project {
     font-family: var(--font-sans);
-    font-size: clamp(2rem, 1rem + 5vw, 5.3rem);
-    line-height: 0.8;
+    font-size:clamp(2.2rem, 8vw, 5rem);
+    line-height: 0.85;
     /* Un peu plus de souffle entre les lignes si besoin */
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
     margin-bottom: 2rem;
-    font-weight: 650;
+    font-weight: 550;
     font-style: normal;
     text-transform: uppercase;
     color: var(--text-color);
@@ -95,7 +95,8 @@
 .description-text p {
     width: 100%;
     white-space: pre-line;
-    font-weight: 300;
+    font-weight: 350;
+    letter-spacing: 1.3px;
 }
 
 /* ==========================================================================
@@ -163,7 +164,7 @@
 .video-gallery {
     cursor: url('../image/on.svg') 16 16, pointer !important;
     transition: filter 0.3s ease;
-    color: white;
+  
 }
 
 /* État activé : Son ON, curseur ON */
@@ -205,32 +206,27 @@
 
 @media (max-width: 768px) {
 
-    .project-grid {
-        grid-template-columns: 1fr;
-        /* Une seule colonne */
-        grid-auto-rows: auto;
-        /* IMPORTANT : On annule le 60vh pour que l'image dicte la hauteur */
-        gap: 20px;
-        /* On augmente un peu l'espace pour le souffle */
+ .project-grid {
+        display: flex;
+        flex-direction: column; /* Force une seule colonne */
+        column-count: 1;        /* Annule explicitement les colonnes */
+        padding: 0 var(--side-pad);
+   
     }
 
-    .project-item.wide,
-    .project-item.tall,
-    .project-item.big {
-
-        aspect-ratio: 4 / 5;
-        /* Ratio uniforme plus élégant sur mobile */
-        grid-column: span 1;
-        grid-row: span 1;
-
-    }
-
-    .project-item img {
-        height: 100%;
+    .project-item {
+         /* Espace vertical entre les images */
         width: 100%;
-        object-fit: cover;
-        
     }
+
+    /* Optionnel : Ajuster les ratios pour que les images ne soient pas trop hautes */
+    .project-item.story, 
+    .project-item.portrait, 
+    .project-item.tall { 
+        aspect-ratio: 4 / 5; 
+    }
+
+
 
     .project-title-area {
         display: block;
@@ -453,9 +449,9 @@
         /* On s'assure qu'elle n'est pas cachée */
         opacity: 0.5;
         /* Opacité réduite pour ne pas gêner la lecture */
-        width: 100%;
+        width: 60vw;
         /* Elle prend toute la largeur du bloc */
-        height: 100%;
+        height: 20vh;
         /* Et toute la hauteur */
         transform: translate(-50%, -50%) scale(1);
         /* Centrée */
@@ -468,7 +464,7 @@
     }
 
     .next-title {
-        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        font-size: clamp(1.4rem, 6vw, 1.7rem);
         /* Taille adaptée au mobile */
         color: var(--white);
         /* Le texte reste bien blanc par dessus */
