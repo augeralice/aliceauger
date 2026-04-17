@@ -267,32 +267,38 @@
 }
 
 .back-btn {
-    position: absolute;
-    /* Change relative en absolute */
-    top: 110px;
-    /* Ajuste selon la hauteur de ton header */
+    /* 1. On l'ancre par rapport au haut de la page, pas par rapport au texte */
+    position: absolute; 
+    top: 110px; /* Ajuste cette valeur pour qu'il soit aligné avec ton logo ou ton menu */
     left: var(--side-pad);
-    display: inline-flex;
-    /* Aligne mieux la flèche et le texte */
-    align-items: center;
+    z-index: 100;
+
+    /* 2. Style visuel */
+    text-decoration: none;
     font-family: var(--font-sans);
     font-size: 10px;
     letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.747);
-    text-decoration: none;
-    transition: all 0.4s ease;
-    z-index: 999;
-    /* Force le bouton au premier plan */
-    cursor: pointer;
+    color: #a7a6a6;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    /* 3. Transition pour l'effet hover desktop */
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.back-btn:hover {
-    color: var(--text-color);
-    transform: translateX(-5px);
-}
 
-.back-btn .arrow {
-    margin-right: 8px;
+
+/* --- EFFET HOVER (Desktop uniquement) --- */
+@media (hover: hover) {
+    .back-btn:hover {
+ color:  #fcf4c7c7;
+        transform: translateX(-5px); /* Petit décalage vers la gauche */
+    }
+
+    .back-btn:hover .arrow {
+        transform: translateX(-3px);
+    }
 }
 
 
@@ -447,7 +453,7 @@
     .next-image-container {
         display: block;
         /* On s'assure qu'elle n'est pas cachée */
-        opacity: 0.5;
+        opacity: 0.8;
         /* Opacité réduite pour ne pas gêner la lecture */
         width: 60vw;
         /* Elle prend toute la largeur du bloc */
@@ -459,7 +465,7 @@
     }
 
     .next-image-container img {
-        filter: brightness(80%) grayscale(20%);
+        filter: brightness(90%) grayscale(10%);
         /* On assombrit l'image pour le contraste */
     }
 
@@ -478,11 +484,7 @@
 
 @media (max-width: 768px) {
 
-    .back-btn {
-        top: 100px;
-        /* On le descend un peu plus pour laisser respirer le logo */
-        left: var(--side-pad);
-    }
+
 
     .explore-label {
         display: none;
