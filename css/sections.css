@@ -1,19 +1,33 @@
 
-.about-name {
-    margin-top: -40px;
-    margin-bottom: 90px;
+/* --- HERO ABOUT --- */
+.about-hero {
+    padding-bottom: 60px;
 }
 
-/* --- GRILLE ABOUT --- */
-.about-content-section {
-    padding: 0px var(--side-pad);
+/* On harmonise avec le style .name-project */
+.about-name.name-project {
+ font-size:clamp(2.2rem, 8vw, 5rem);    line-height: 0.8;
 
+    margin-bottom: 90px;
+    text-transform: uppercase;
+    font-weight: 650;
+    color: var(--text-color);
+}
+
+.about-category {
+    margin-bottom: 15px;
+}
+
+/* --- SECTION CONTENU --- */
+.about-content-section {
+    padding: 50px var(--side-pad); /* On donne de l'air */
+    margin-bottom: 80px;
 }
 
 .about-grid {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    gap: 80px;
+    gap: 100px; /* Espace confortable entre texte et image */
     align-items: start;
 }
 
@@ -21,7 +35,7 @@
 .details-title {
     font-family: var(--font-sans);
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 320;
     margin-bottom: 30px;
     letter-spacing: 1px;
      color: white;
@@ -33,26 +47,26 @@
 }
 
 .inner-text-content p {
-    font-family: var(--font-sans);
-     color: white;
-    font-style: normal;
-    font-size: clamp(1.2rem, 4vw, 1.4rem);
-    line-height: 1.56;
-    font-weight: 300;
+font-family: var(--font-sans);
+    color: var(--white);
+    font-size: clamp(1.1rem, 2.8vw, 1.4rem); /* Taille cohérente avec le site */
+    line-height: 1.5;
+    font-weight: 220;
 
 }
 
 /* --- IMAGE --- */
 .about-image-block {
     position: relative;
-    margin-top: 50px;
+   margin-top: 0;
 }
 
 
 .about-image-block img {
-    width: 100%;
+width: 100%;
     height: auto;
     display: block;
+    object-fit: cover;
 
 }
 
@@ -60,18 +74,39 @@
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
+    .about-content-section {
+        padding: 60px var(--side-pad);
+    }
+
     .about-grid {
-        grid-template-columns: 1fr; /* On empile sur tablette/mobile */
+        grid-template-columns: 1fr;
         gap: 60px;
     }
 
-    .inner-text-content {
-        padding-left: 20px;
+ .about-image-block {
+        width: 60%;        /* Réduit la largeur de l'image */
+        margin: 0 auto;    /* La centre horizontalement */
+        order: -1;         /* Elle reste au-dessus du texte */
     }
 
-    .about-image-block {
-        width: 80%; /* Un peu moins large sur mobile pour le style */
-        margin: 0 auto;
+    .about-name.name-project {
+        font-size: clamp(2rem, 9vw, 3.8rem);
+   
     }
 }
 
+@media (max-width: 768px) {
+    .inner-text-content {
+        padding-left: 20px;
+        border-left: 1px solid var(--text-color); /* Rappel de la couleur d'accentuation */
+    }
+
+    .inner-text-content p {
+        font-size: 1.1rem;
+    }
+}
+@media (max-width: 768px) {
+    .about-image-block {
+        width: 75%;        /* Un peu plus large sur petit téléphone pour rester lisible */
+    }
+}
