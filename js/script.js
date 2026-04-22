@@ -44,40 +44,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 4. FONCTION DE FILTRAGE (Version Grid-Safe) ---
-    const applyFilter = (filterValue, clickedButton) => {
-        // 1. Gestion des boutons
-        filters.forEach(btn => btn.classList.remove('active'));
-        if (clickedButton) clickedButton.classList.add('active');
+const applyFilter = (filterValue, clickedButton) => {
+    filters.forEach(btn => btn.classList.remove('active'));
+    if (clickedButton) clickedButton.classList.add('active');
 
-        // 2. Gestion des projets
-        projects.forEach(project => {
-            const isMatch = filterValue === 'all' || project.classList.contains(filterValue);
+    projects.forEach(project => {
+        const isMatch = filterValue === 'all' || project.classList.contains(filterValue);
+        
+        // --- MISE À JOUR DYNAMIQUE DES LIENS ---
+        const link = project.querySelector('a');
+        if (link) {
+            const baseUrl = link.href.split('?')[0];
+            const urlParams = new URLSearchParams(link.search);
+            const projectId = urlParams.get('id');
+            // On réécrit le href avec le nouveau filtre
+            link.href = `${baseUrl}?id=${projectId}&filter=${filterValue}`;
+        }
 
-            if (isMatch) {
-                // ÉTAPE A : On le remet dans la grille (supprime display: none)
-                project.classList.remove('filtering-out');
-
-                // ÉTAPE B : Petit délai pour que l'animation puisse se déclencher
-                requestAnimationFrame(() => {
-                    project.classList.add('is-visible');
-                    // On nettoie les styles inline que le JS aurait pu mettre avant
-                    project.style.opacity = "";
-                    project.style.transform = "";
-                    project.style.display = "";
-                });
-            } else {
-                // ÉTAPE A : On lance l'animation de disparition
-                project.classList.remove('is-visible');
-
-                // ÉTAPE B : On attend la fin de l'anim (600ms) pour le retirer de la grille
-                setTimeout(() => {
-                    if (!project.classList.contains('is-visible')) {
-                        project.classList.add('filtering-out');
-                    }
-                }, 600);
-            }
-        });
-    };
+        if (isMatch) {
+            project.classList.remove('filtering-out');
+            requestAnimationFrame(() => {
+                project.classList.add('is-visible');
+                project.style.display = "";
+            });
+        } else {
+            project.classList.remove('is-visible');
+            setTimeout(() => {
+                if (!project.classList.contains('is-visible')) {
+                    project.classList.add('filtering-out');
+                }
+            }, 600);
+        }
+    });
+};
 // --- 5. ÉCOUTEURS DE CLIC (Version ultra-stable) ---
 filters.forEach(filter => {
     filter.addEventListener('click', function (e) {
