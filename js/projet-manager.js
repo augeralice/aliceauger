@@ -129,5 +129,29 @@ document.querySelectorAll('.project-grid .reveal-mask').forEach(el => {
     // Observation du footer de navigation
     const footerNav = document.querySelector('.project-footer-nav');
     if (footerNav) revealObserver.observe(footerNav);
+    
+// --- 7. GESTION DU STYLE .ACTIVE DANS LE FOOTER ---
+const updateFooterActiveState = () => {
+    const filterLinks = document.querySelectorAll('.index-links a');
+    
+    // On utilise la variable currentFilter que tu as déjà définie en haut de ton fichier
+    // On s'assure qu'elle vaut 'all' par défaut si elle est vide
+    const activeCategory = currentFilter || 'all';
 
+    filterLinks.forEach(link => {
+        // On crée un objet URL pour extraire proprement le paramètre 'filter' du href
+        const linkUrl = new URL(link.href, window.location.origin);
+        const linkFilterValue = linkUrl.searchParams.get('filter') || 'all';
+
+        // Si la valeur du lien correspond au filtre actif de la page, on allume !
+        if (linkFilterValue === activeCategory) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+};
+
+// On appelle la fonction pour l'activer
+updateFooterActiveState();
 });
