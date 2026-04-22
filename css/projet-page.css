@@ -350,7 +350,8 @@
     border: none;
     color: var(--white);
     font-family: var(--font-sans);
-    font-size: 11px;
+    font-size: 12px;
+        opacity: 0.4;
     font-weight: 400;
     transition: 0.3s;
     cursor: pointer;
@@ -360,7 +361,14 @@
 
 .index-links a:hover {
     color: var(--text-color);
-    font-weight: 500;
+    opacity: 1;
+}
+
+.index-links a.active {
+    opacity: 1;
+    border-bottom: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding-bottom: 2px;
 }
 
 .next-project-link {
