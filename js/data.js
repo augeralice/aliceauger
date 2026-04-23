@@ -17,10 +17,12 @@ const PROJECTS_DATA = [
         url: "projet-page.html?id=volatiles-paris",
         gallery: [
             { src: "image/noel.webp", layout: "" },
-            { src: "image/volatiles2.webp", layout: "" }, { src: "image/client-illu(1).webp", layout: "" },
-            { src: "image/croquis-3.webp", layout: "landscape" },
+            { src: "image/volatiles2.webp", layout: "" },    
             { src: "image/grav.mp4", layout: "portrait", type: "video" },
-            { src: "image/client-calli(1).webp", layout: "portrait" },
+            { src: "image/croquis-3.webp", layout: "landscape" },  
+             { src: "image/client-calli(1).webp", layout: "portrait" },
+               { src: "image/client-illu(1).webp", layout: "" },
+         
         ]
     },
 
