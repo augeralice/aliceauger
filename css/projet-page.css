@@ -126,7 +126,7 @@
 
 .project-item {
     width: 100%;
-
+break-inside: avoid; /* Très important pour column-count */
     display: block;     /* Empêche de couper l'image entre deux colonnes */
     margin-bottom: 10px;       /* Espace vertical égal à 20px */
     overflow: hidden;
@@ -157,6 +157,7 @@
         }   
        .project-item.landscape { 
         aspect-ratio: 4 / 3; 
+        
     } 
 
 
