@@ -27,32 +27,37 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-// --- 3. GALERIE (Support Images & Vidéos) ---
-
+// --- 3. GALERIE (Version Ordre Logique) ---
 const galleryGrid = document.querySelector('.project-grid');
+
 if (galleryGrid && currentProject.gallery) {
     galleryGrid.innerHTML = '';
-    currentProject.gallery.forEach(imgData => {
+
+    const isDesktop = window.innerWidth > 768;
+    let images = currentProject.gallery;
+
+    // SI DESKTOP : On réorganise le tableau pour que l'ordre column-count 
+    // (haut en bas) corresponde à l'ordre visuel (gauche à droite)
+    if (isDesktop) {
+        const leftCol = [];
+        const rightCol = [];
+        images.forEach((img, index) => {
+            if (index % 2 === 0) leftCol.push(img); // Image 1, 3, 5...
+            else rightCol.push(img);               // Image 2, 4, 6...
+        });
+        images = [...leftCol, ...rightCol]; // On met toutes les gauches puis toutes les droites
+    }
+
+    images.forEach(imgData => {
         const item = document.createElement('div');
         item.className = `reveal-mask project-item ${imgData.layout || ''}`; 
-
+        
         const isVideo = imgData.src.toLowerCase().endsWith('.mp4');
-
         if (isVideo) {
-            // RENDU VIDÉO : On enlève autoplay, on ajoute la classe video-gallery et le curseur pointer
-            item.innerHTML = `
-                <video 
-                    src="${imgData.src}" 
-                    class="video-gallery"
-                    loop 
-                    muted 
-                    playsinline 
-                    style="cursor:pointer;">
-                </video>`;
+            item.innerHTML = `<video src="${imgData.src}" class="video-gallery" loop muted playsinline style="cursor:pointer;"></video>`;
         } else {
             item.innerHTML = `<img src="${imgData.src}" loading="lazy" alt="${currentProject.title}">`;
         }
-
         galleryGrid.appendChild(item);
     });
 }
@@ -129,7 +134,7 @@ document.querySelectorAll('.project-grid .reveal-mask').forEach(el => {
     // Observation du footer de navigation
     const footerNav = document.querySelector('.project-footer-nav');
     if (footerNav) revealObserver.observe(footerNav);
-    
+
 // --- 7. GESTION DU STYLE .ACTIVE DANS LE FOOTER ---
 const updateFooterActiveState = () => {
     const filterLinks = document.querySelectorAll('.index-links a');
